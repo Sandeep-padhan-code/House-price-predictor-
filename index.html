@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automatic Alarm Scheduler</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f2f7ff;
+            margin: 0;
+            padding: 0;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .panel {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        textarea,
+        input,
+        select {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-right: 12px;
+        }
+
+        button.secondary {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .alarm-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .alarm-item {
+            border: 1px solid #d1d5db;
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 12px;
+            background: #fafbff;
+        }
+
+        .alarm-time {
+            display: inline-block;
+            margin-top: 8px;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .status {
+            margin-top: 12px;
+            color: #111827;
+        }
+
+        .status.error {
+            color: #b91c1c;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 720px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Automatic Alarm Scheduler</h1>
+            <p>Use AI-powered scheduling logic to create alarms from your project tasks and README instructions.</p>
+        </header>
+
+        <section class="panel">
+            <div class="grid">
+                <div>
+                    <label for="task-input">Task / Reminder</label>
+                    <textarea id="task-input" rows="6" placeholder="Type a task, or load README tasks for automatic scheduling..."></textarea>
+                </div>
+                <div>
+                    <label for="time-preference">Preferred Schedule Window</label>
+                    <select id="time-preference">
+                        <option value="auto">AI chooses best time</option>
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="evening">Evening</option>
+                    </select>
+
+                    <button id="generate-btn">Generate Alarm Schedule</button>
+                    <button id="load-readme" class="secondary">Load README Tasks</button>
+                </div>
+            </div>
+            <p class="status" id="status"></p>
+        </section>
+
+        <section class="panel">
+            <h2>Generated Alarms</h2>
+            <ul class="alarm-list" id="alarm-list"></ul>
+        </section>
+
+        <section class="panel">
+            <h2>Add a Custom Alarm</h2>
+            <div class="grid">
+                <div>
+                    <label for="custom-title">Alarm Title</label>
+                    <input id="custom-title" placeholder="Example: Team standup" />
+                </div>
+                <div>
+                    <label for="custom-time">Alarm Time</label>
+                    <input id="custom-time" type="time" />
+                </div>
+            </div>
+            <button id="add-btn">Add Custom Alarm</button>
+        </section>
+    </div>
+
+    <script src="alarm_scheduler.js"></script>
+</body>
+</html>
