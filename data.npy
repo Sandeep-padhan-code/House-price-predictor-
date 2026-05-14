@@ -1,0 +1,66 @@
+import numpy as np
+
+# -------------------------------
+# House Data
+# -------------------------------
+
+# Features:
+# [Area, Bedrooms, Bathrooms]
+
+house_data = np.array([
+    [1200, 2, 1],
+    [1500, 3, 2],
+    [1800, 4, 2],
+    [2400, 4, 3],
+    [3000, 5, 4]
+])
+
+# House Prices
+prices = np.array([
+    2500000,
+    3500000,
+    4500000,
+    6500000,
+    8500000
+])
+
+# -------------------------------
+# Display Data
+# -------------------------------
+
+print("House Features:\n")
+print(house_data)
+
+print("\nHouse Prices:\n")
+print(prices)
+
+# -------------------------------
+# NumPy Operations
+# -------------------------------
+
+# Average Area
+avg_area = np.mean(house_data[:, 0])
+
+print("\nAverage House Area:", avg_area)
+
+# Maximum Price
+max_price = np.max(prices)
+
+print("Highest House Price:", max_price)
+
+# Minimum Price
+min_price = np.min(prices)
+
+print("Lowest House Price:", min_price)
+
+# Shape of Dataset
+print("\nDataset Shape:", house_data.shape)
+
+# -------------------------------
+# Example New House Input
+# -------------------------------
+
+new_house = np.array([[2000, 3, 2]])
+
+print("\nNew House Data:")
+print(new_house)
